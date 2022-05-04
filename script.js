@@ -11,6 +11,9 @@ function computerPlay() {
     }
 }
 
+let playerScore = "";
+let computerScore = "";
+
 //function to play single round
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
@@ -19,24 +22,31 @@ function playRound(playerSelection, computerSelection) {
         (playerSelection === "rock" && computerSelection === "scissors") ||
         (playerSelection === "paper" && computerSelection === "rock") || 
         (playerSelection === "scissors" && computerSelection === "paper")) {
+        playerScore++;
         return "You win!";
     } else if (
         (computerSelection === "rock" && playerSelection === "scissors") ||
         (computerSelection === "paper" && playerSelection === "rock") ||
         (computerSelection === "scissors" && playerSelection === "paper")) {
+        computerScore++;
         return "You lose!";
     }
 }
 
 //function to play five rounds
 function game() {
-    let playerScore = "";
-    let computerScore = "";
     for (let i = 0; i < 5; i++) {
         const playerSelection = prompt("Rock, Paper or Scissors?", "");
         const computerSelection = computerPlay();
-        console.log(computerSelection);
+        console.log("Computer:", computerSelection);
+        console.log("Player:", playerSelection);
         console.log(playRound(playerSelection, computerSelection));
+    }
+
+    if (playerScore > computerScore) {
+        console.log("WINNER!");
+    } else {
+        console.log("LOSER!");
     }
 }
 
