@@ -59,9 +59,6 @@ buttons.forEach(button => {
     button.addEventListener('click', function() {
         playerSelection = button.id;
         computerSelection = computerPlay();
-        console.log(playerSelection)
-        console.log(computerSelection)
-        console.log(playRound(playerSelection, computerSelection))
 
         const result = document.getElementById('result');
         const playerScr = document.getElementById('playerScr');
@@ -79,6 +76,25 @@ buttons.forEach(button => {
 
         playerScr.textContent = `Player score: ${playerScore}`;
         computerScr.textContent = `Computer score: ${computerScore}`;
+
+        const winner = document.getElementById('winner');
+
+
+        if (playerScore === 5) {
+            winner.textContent = "You won the game! Reload the page to play again";
+            disabledButtons();
+        } 
+
+        if (computerScore === 5) {
+            winner.textContent = "You lost the game! Reload the page to play again";
+            disabledButtons();
+        }
     })
 });
 
+//function to disable the buttons
+function disabledButtons() {
+    buttons.forEach(btn => {
+        btn.disabled = true;
+    })
+}
