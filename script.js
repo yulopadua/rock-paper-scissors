@@ -11,25 +11,23 @@ function computerPlay() {
     }
 }
 
-let playerScore = "";
-let computerScore = "";
+let playerScore = 0;
+let computerScore = 0;
 
 //function to play single round
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
-        return "It's a tie!";
+        return "TIE";
     } else if (
         (playerSelection === "rock" && computerSelection === "scissors") ||
         (playerSelection === "paper" && computerSelection === "rock") || 
         (playerSelection === "scissors" && computerSelection === "paper")) {
-        playerScore++;
-        return "You win!";
+        return "WIN";
     } else if (
         (computerSelection === "rock" && playerSelection === "scissors") ||
         (computerSelection === "paper" && playerSelection === "rock") ||
         (computerSelection === "scissors" && playerSelection === "paper")) {
-        computerScore++;
-        return "You lose!";
+        return "LOSE";
     }
 }
 
@@ -64,10 +62,23 @@ buttons.forEach(button => {
         console.log(playerSelection)
         console.log(computerSelection)
         console.log(playRound(playerSelection, computerSelection))
-        
+
+        const result = document.getElementById('result');
+        const playerScr = document.getElementById('playerScr');
+        const computerScr = document.getElementById('computerScr');
+
+        if (playRound(playerSelection, computerSelection) == "WIN") {
+            result.textContent = `You win! ${playerSelection} beats ${computerSelection}`;;
+            playerScore++;
+        } else if (playRound(playerSelection, computerSelection) == "LOSE") {
+            result.textContent = `You lose! ${computerSelection} beats ${playerSelection}`;
+            computerScore++
+        } else if (playRound(playerSelection, computerSelection) == "TIE") {
+            result.textContent = `It's a tie! you both chose ${computerSelection}`;
+        }
+
+        playerScr.textContent = `Player score: ${playerScore}`;
+        computerScr.textContent = `Computer score: ${computerScore}`;
     })
 });
-
-
-
 
