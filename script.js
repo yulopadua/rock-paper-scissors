@@ -34,20 +34,40 @@ function playRound(playerSelection, computerSelection) {
 }
 
 //function to play five rounds
-function game() {
-    for (let i = 0; i < 5; i++) {
-        const playerSelection = prompt("Rock, Paper or Scissors?", "");
-        const computerSelection = computerPlay();
-        console.log("Computer:", computerSelection);
-        console.log("Player:", playerSelection);
-        console.log(playRound(playerSelection, computerSelection));
-    }
+// function game() {
+//     for (let i = 0; i < 5; i++) {
+//         const playerSelection = prompt("Rock, Paper or Scissors?", "");
+//         const computerSelection = computerPlay();
+//         console.log("Computer:", computerSelection);
+//         console.log("Player:", playerSelection);
+//         console.log(playRound(playerSelection, computerSelection));
+//     }
 
-    if (playerScore > computerScore) {
-        console.log("WINNER!");
-    } else {
-        console.log("LOSER!");
-    }
-}
+//     if (playerScore > computerScore) {
+//         console.log("WINNER!");
+//     } else {
+//         console.log("LOSER!");
+//     }
+// }
 
-game();
+// game();
+
+let computerSelection = "";
+let playerSelection = "";
+
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach(button => {
+    button.addEventListener('click', function() {
+        playerSelection = button.id;
+        computerSelection = computerPlay();
+        console.log(playerSelection)
+        console.log(computerSelection)
+        console.log(playRound(playerSelection, computerSelection))
+        
+    })
+});
+
+
+
+
